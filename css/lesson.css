@@ -1,0 +1,103 @@
+h1{
+    color: brown;
+}
+
+.bd-example{
+    position: relative;
+    padding: 1rem;
+    margin: 1rem --15px 0;
+    border: solid #f5f5dd;
+    border-width: 0.2rem 0 0;
+    background-color: #f5f5dd;
+    width: 50%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+div{
+    display: block;
+}
+
+form{
+    display: block;
+    margin-top: 0cm;
+}
+
+.form-row{
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -5px;
+    margin-left: -5px;
+}
+
+.form-group{
+    margin-bottom: 1rem;
+    width: auto;
+}
+
+.form-control{
+    display: block;
+    width: 100%;
+    padding: 10px 10px;
+    font-size: 1rem;
+    line-height: 1;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box ;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: linear;
+}
+
+
+
+label{
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    cursor: default;
+}
+
+button{
+    padding: 10px 10px;
+    font-size: 1rem;
+    line-height: 1;
+    background-color: #007bfa;
+    background-clip: padding-box ;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: linear;
+}
+
+input, label {
+    display:block;
+}
+
+.col-md-6{
+    position: relative;
+    min-height: 5px;
+    padding-right: 6px;
+    padding-left: 6px;
+    width: 50%;
+}
+.col-md-4{
+    position: relative;
+    min-height: 5px;
+    padding-right: 6px;
+    padding-left: 6px;
+    width: 30%;
+}
+.col-md-2{
+    position: relative;
+    min-height: 5px;
+    padding-right: 6px;
+    padding-left: 6px;
+    width: 20%;
+}
+
+.incheck,.spancheck{
+    display: inline;
+}
