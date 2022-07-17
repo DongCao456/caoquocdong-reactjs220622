@@ -1,0 +1,51 @@
+.class-control{
+    margin: 50px;
+}
+
+.box1{
+    padding: 50px 50px 50px 50px;
+    background: gray;
+    float: left;
+    height: 50px;
+    width: 40%;
+    text-align: center;
+}
+
+.box2{
+    float: left;
+    height: 50px;
+    width: 40%;
+    background: bisque ;
+    padding: 50px 50px 50px 50px;
+    text-align: center;
+}
+.class-control1{
+    margin: 120px 50px 0 50px;
+    clear: left;
+}
+.box11{
+    padding: 50px;
+    width: 25%;
+    height: 50px;
+    background-color: antiquewhite;
+    text-align: center;
+    float: left;
+}
+
+.box12{
+    padding: 50px;
+    width: 25%;
+    height: 50px;
+    float: left;
+    background-color: gray;
+    text-align: center;
+}
+
+.box13{
+    padding: 50px;
+    width: 25%;
+    height: 50px;
+    float: left;
+    background-color: darkgray;
+    text-align: center;
+}
