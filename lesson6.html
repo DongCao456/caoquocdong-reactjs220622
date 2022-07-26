@@ -2,18 +2,26 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
     <title>Document</title>
+    <style>
+        #oldArea {
+            margin: 0 60px 0 60px;
+        }
+
+        #btnTransfer {
+            padding: 30px;
+            margin: 0 60px 0 60px;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="infoFruits">
-
-    </div>
+    <div id="infoFruits"></div>
 
     <div id="cars">
         <table class="table table-bordered">
@@ -23,11 +31,22 @@
                     <th>Fruits</th>
                 </tr>
             </thead>
-            <tbody id="mybody">
-
-            </tbody>
-
+            <tbody id="mybody"></tbody>
         </table>
+
+        <div>
+            <div id="oldArea">
+                <textarea id="oldValue" type="text" class="form-control"></textarea>
+            </div>
+            <div id="btnTransfer">
+                <button type="button" class="btn-btn-primary" onclick="transfer();">
+                    Transfer
+                </button>
+            </div>
+            <div id="oldArea">
+                <textarea id="newValue" type="text" class="form-control"></textarea>
+            </div>
+        </div>
     </div>
     <script>
         var fruits, text, i, flen;
@@ -43,17 +62,16 @@
 
         document.getElementById("infoFruits").innerHTML = text;
 
-
         var cars, text1, j, fleng;
         text1 = "";
         cars = ["BMW", "Mercedes", "Ferrari", "Lambo"];
         cars[cars.length] = "Audi";
 
         cars.forEach((a, i) => {
-            let tr = document.createElement('tr');
-            let th = document.createElement('th');
+            let tr = document.createElement("tr");
+            let th = document.createElement("th");
             th.innerHTML = i + 1;
-            let td = document.createElement('td');
+            let td = document.createElement("td");
             td.innerHTML = a;
             tr.appendChild(th);
             tr.appendChild(td);
@@ -61,14 +79,39 @@
             document.getElementById("mybody").appendChild(tr);
         });
 
+        // var textOld = document.getElementById("oldValue");
+        // textOld.value = "   AAAA    ";
+        // var textNew = document.getElementById("newValue");
+        // function transfer() {
+        //     textNew.value = textOld.value.trim();
+        // }
 
+        var textOld = document.getElementById("oldValue");
+        var textNew = document.getElementById("newValue");
 
+        // const str = 'let a  =12;';
 
+        // const result = str.replace("=", " = ");
+        // console.log(result); // 👉️ "a p p l e"
 
+        function transfer() {
+            textNew.value = textOld.value.split(' ').filter(s => s).join(' ');
+            console.log(textNew.value);
+            textNew.value = textNew.value.trim();
+            console.log(textNew.value);
 
-
-
+            // textNew.value = textNew.value.split("=");
+            // console.log(textNew.value);
+            // textNew.value = textNew.value.replace(",", "=");
+            // console.log(textNew.value);
+            textNew.value = textNew.value.replace("=", " = ");
+            console.log(textNew.value);
+            textNew.value = textNew.value.replace(" ;", ";");
+            console.log(textNew.value);
+            textNew.value = textNew.value.replace("=", " = ");
+            textNew.value = textNew.value.split(' ').filter(s => s).join(' ');
+            console.log(textNew.value);
+        }
     </script>
-</body>
 
 </html>
