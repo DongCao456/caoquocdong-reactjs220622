@@ -10,31 +10,27 @@
     <title>Document</title>
     <style>
         #oldArea {
-            margin: 0 60px 0 60px;
+            margin: 0 60px 30px 60px;
         }
 
         #btnTransfer {
             padding: 30px;
             margin: 0 60px 0 60px;
         }
+
+        #newTrans {
+            margin: 60px 60px 0 60px;
+        }
     </style>
 </head>
 
 <body>
-    <div id="infoFruits"></div>
 
     <div id="cars">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Fruits</th>
-                </tr>
-            </thead>
-            <tbody id="mybody"></tbody>
-        </table>
+
 
         <div>
+            <h1>Format Code</h1>
             <div id="oldArea">
                 <textarea id="oldValue" type="text" class="form-control"></textarea>
             </div>
@@ -47,47 +43,29 @@
                 <textarea id="newValue" type="text" class="form-control"></textarea>
             </div>
         </div>
+
+        <div>
+            <h1>Balance</h1>
+            <div id="oldArea">
+                <textarea id="orginText" type="text" class="form-control"></textarea>
+            </div>
+            <div id="btnTransfer">
+                <button type="button" class="btn-btn-primary" id="balance" onclick="balance()">
+                    Transfer
+                </button>
+            </div>
+            <div id="oldArea">
+                <textarea id="newText" type="text" class="form-control"></textarea>
+            </div>
+        </div>
     </div>
     <script>
-        var fruits, text, i, flen;
-        fruits = ["Banana", "Orange", "Apple", "Mango"];
-        flen = fruits.length;
-        text = "<ul>";
 
-        for (i = 0; i < flen; i++) {
-            text += "<li>" + fruits[i] + "</li>";
-        }
-
-        text += "</ul>";
-
-        document.getElementById("infoFruits").innerHTML = text;
-
-        var cars, text1, j, fleng;
-        text1 = "";
-        cars = ["BMW", "Mercedes", "Ferrari", "Lambo"];
-        cars[cars.length] = "Audi";
-
-        cars.forEach((a, i) => {
-            let tr = document.createElement("tr");
-            let th = document.createElement("th");
-            th.innerHTML = i + 1;
-            let td = document.createElement("td");
-            td.innerHTML = a;
-            tr.appendChild(th);
-            tr.appendChild(td);
-
-            document.getElementById("mybody").appendChild(tr);
-        });
-
-        // var textOld = document.getElementById("oldValue");
-        // textOld.value = "   AAAA    ";
-        // var textNew = document.getElementById("newValue");
-        // function transfer() {
-        //     textNew.value = textOld.value.trim();
-        // }
 
         var textOld = document.getElementById("oldValue");
         var textNew = document.getElementById("newValue");
+        var origintext = document.getElementById("orginText");
+        var newM = document.getElementById("newText");
 
         // const str = 'let a  =12;';
 
@@ -112,6 +90,41 @@
             textNew.value = textNew.value.split(' ').filter(s => s).join(' ');
             console.log(textNew.value);
         }
+
+
+
+        function checkboo(s) {
+
+
+            let par = {
+                ")": "(",
+                "}": "{",
+                "]": "["
+            };
+            let s1 = [];
+            let i;
+            for (i = 0; i < s.length; i++) {
+                if (s[i] === "[" || s[i] === "{" || s[i] === "(") {
+                    s1.push(s[i]);
+                }
+                else if (s1[s1.length - 1] === par[s[i]]) {
+                    s1.pop();
+                }
+                else return false;
+
+
+
+            }
+            return s1.length ? false : true;
+
+        };
+
+        function balance() {
+            newM.value = checkboo(origintext.value);
+        }
+
     </script>
+
+
 
 </html>
