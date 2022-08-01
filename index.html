@@ -176,6 +176,11 @@
                 else {
                     $("#btnNext").show();
                 }
+                if (end === pageSize && start === 0)
+                    $("#btnPrevious").hide();
+                else {
+                    $("#btnPrevious").show();
+                }
             }).forEach(c => {
                 result += `<tr>
      <td>${c.id}</td>
