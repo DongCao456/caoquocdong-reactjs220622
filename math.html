@@ -71,16 +71,18 @@
                     text += "Phương trình vô nghiệm!";
                 }
                 else {
-                    text += "Phương trình này có 1 nghiệm:" + (-parseFloat(c) / parseFloat(b));
+                    text += "Phương trình này có 1 nghiệm:" + (-numC / numB);
+
                 }
+                return $("#result").html(text);
             }
 
-            var delta = numB * numB - 4 * numA * numC;
+            var delta = (numB * numB) - (4 * numA * numC);
             var x1;
             var x2;
             if (parseFloat(delta) > 0) {
-                x1 = parseFloat((-numB + Math.sqrt(delta * 1)) / (2 * numA));
-                x2 = parseFloat((-numB - Math.sqrt(delta * 1)) / (2 * numA));
+                x1 = parseFloat((-numB + Math.sqrt(delta)) / (2 * numA));
+                x2 = parseFloat((-numB - Math.sqrt(delta)) / (2 * numA));
                 text += "Phương trình có 2 nghiệm là :x1=" + x1 + "và x2=" + x2;
             }
             else if (delta === 0) {
