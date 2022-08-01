@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        .calculate {
+            margin: 60px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="calculate">
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputA">Nhập số A:</label>
+                        <input class="form-control" id="inputA" placeholder="Nhập số A">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputB">Nhập số B:</label>
+                        <input class="form-control" id="inputB" placeholder="Nhập số B">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputA">Nhập số C:</label>
+                        <input class="form-control" id="inputC" placeholder="Nhập số C">
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary" onclick="giaiPTBac2()">Tính toán</button>
+                </div>
+
+                <div id="result">
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script>
+        function giaiPTBac2() {
+            let a = document.getElementById("inputA").value;
+            let b = document.getElementById("inputB").value;
+            let c = document.getElementById("inputC").value;
+            let numA = parseFloat(a);
+            let numB = parseFloat(b);
+            let numC = parseFloat(c);
+            var text = "";
+            if (numA === 0) {
+                if (numB === 0) {
+                    text += "Phương trình vô nghiệm!";
+                }
+                else {
+                    text += "Phương trình này có 1 nghiệm:" + (-parseFloat(c) / parseFloat(b));
+                }
+            }
+
+            var delta = numB * numB - 4 * numA * numC;
+            var x1;
+            var x2;
+            if (parseFloat(delta) > 0) {
+                x1 = parseFloat((-numB + Math.sqrt(delta * 1)) / (2 * numA));
+                x2 = parseFloat((-numB - Math.sqrt(delta * 1)) / (2 * numA));
+                text += "Phương trình có 2 nghiệm là :x1=" + x1 + "và x2=" + x2;
+            }
+            else if (delta === 0) {
+                x1 = (-numB / (2 * numA));
+                text += "Phương trình nghiệm là kép là :x1 = x2 =" + x1;
+            }
+            else {
+                text += "Phương trình vô nghiệm!";
+            }
+
+            $("#result").html(text);
+        }
+    </script>
+</body>
+
+</html>
