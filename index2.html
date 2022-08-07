@@ -66,6 +66,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+
             <div class="collapse navbar-collapse" id="navb">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
@@ -100,7 +101,7 @@
 
         </nav>
 
-        <div class="row mb-3 mt-3" id="products">
+        <div class="row mb-3 mt-3" id="listProducts">
             <div class="col-sm-3 mb-3 product">
                 <div class="card" style="">
                     <img class="card-img-top" src="https://www.w3schools.com/bootstrap4/img_avatar1.png"
@@ -123,7 +124,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Macbook 2020</h4>
                         <p class="card-text">
-                            <i>$544</i>
+                            <i>$2000</i>
                         </p>
                         <p>Long</p>
                         <a href="#" class="btn btn-primary">Buy</a>
@@ -213,7 +214,7 @@
                     <div class="card-body">
                         <h4 class="card-title">John Doe</h4>
                         <p class="card-text">
-                            <i>$1000</i>
+                            <i>$100</i>
                         </p>
                         <p>Description</p>
                         <a href="#" class="btn btn-primary">Buy</a>
@@ -227,7 +228,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Macbook 2020</h4>
                         <p class="card-text">
-                            <i>$1000</i>
+                            <i>$2500</i>
                         </p>
                         <p>Description</p>
                         <a href="#" class="btn btn-primary">Buy</a>
@@ -242,7 +243,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Iphone15</h4>
                         <p class="card-text">
-                            <i>$1000</i>
+                            <i>$10000</i>
                         </p>
                         <p>Description</p>
                         <a href="#" class="btn btn-primary">Buy</a>
@@ -257,7 +258,7 @@
                     <div class="card-body">
                         <h4 class="card-title">John Doe</h4>
                         <p class="card-text">
-                            <i>$1000</i>
+                            <i>$4000</i>
                         </p>
                         <p>Description</p>
                         <a href="#" class="btn btn-primary">Buy</a>
@@ -272,7 +273,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Iphone15</h4>
                         <p class="card-text">
-                            <i>$1000</i>
+                            <i>$1500</i>
                         </p>
                         <p>Description</p>
                         <a href="#" class="btn btn-primary">Buy</a>
@@ -287,7 +288,7 @@
                     <div class="card-body">
                         <h4 class="card-title">John Doe</h4>
                         <p class="card-text">
-                            <i>$1000</i>
+                            <i>$7000</i>
                         </p>
                         <p>Description</p>
                         <a href="#" class="btn btn-primary">Buy</a>
@@ -301,7 +302,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Macbook 2020</h4>
                         <p class="card-text">
-                            <i>$1000</i>
+                            <i>$6000</i>
                         </p>
                         <p>Description</p>
                         <a href="#" class="btn btn-primary">Buy</a>
@@ -357,18 +358,7 @@
         <div>
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                    <li class="page-item">
-                        <button class="page-link" type="button" aria-label="Previous" id="clickPre">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </button>
-                    </li>
-                    <li class="page-item" id="nextArea">
-                        <button class="page-link" type="button" aria-label="Next" id="clickNext">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </button>
-                    </li>
+
                 </ul>
             </nav>
             <div id="number"></div>
@@ -436,12 +426,7 @@
         let curPage = 1;
         var dataLength = $("#areaSearch .product").length;
         var pageCount = Math.ceil(dataLength / pageSize);
-        function showNumPage() {
-            var i;
-            for (i = 1; i <= pageCount; i++) {
-                $("#nextArea").before(`<li class="page-item"><button onclick="showData(${i})" class="page-link" href="#">${i}</button></li>`).show();
-            }
-        }
+
 
 
         $("#clickPre").on("click", function () {
@@ -458,35 +443,57 @@
             showData(curPage);
         })
 
-
-
-        function showData(curPage) {
-            $("#areaSearch .product").hide();
-            $("#areaSearch .product").each(function (index) {
-                let start = (curPage - 1) * pageSize;
-                let end = curPage * pageSize;
-                if (index >= start && index < end) {
-                    $(this).show();
-                }
-            });
+        function showNumPage() {
 
         }
 
-        $("#selectedOpt").change(function () {
-            if ($("#selectedOpt").val("Decrease")) {
-                var list = $(".product .card-text").get();
-                list.sort(function (a, b) {
-                    return parseInt($(".product .card-text" + b).text().replace("$", "")) - parseInt($(".product .card-text" + a).text().replace("$", ""));
-                })
-                $("#number").append(list);
+        function showData(curPage) {
+            $("#areaSearch .product").hide();
+            var html = "";
+            $("#areaSearch .product").each(function (index) {
+
+                var count = 1;
+                let start = (curPage - 1) * pageSize;
+                let end = curPage * pageSize;
+                if (index >= start && index <= end) {
+                    $(this).show();
+                }
+
+            });
+            $(".pagination").empty();
+            var i;
+            for (i = 1; i <= pageCount; i++) {
+                if (i === curPage) {
+
+                    html += `
+                    <li class="page-item active"><button onclick="showData(${i})" class="page-link" href="#">${i}</button></li>
+                    `;
+                }
+                else {
+                    html += `
+                    <li class="page-item"><button onclick="showData(${i})" class="page-link" href="#">${i}</button></li>
+                    `;
+                }
+
             }
+            $(".pagination").append(html);
+
+        }
+
+        $("#selectedOpt").click(function () {
+
+            $("#listProducts .product").sort(function (a, b) {
+                if ($("#selectedOpt").val() == "decrease") {
+                    return parseInt($(b).find(".card-text i:last-child").text().replace("$", "")) - parseInt($(a).find(".card-text i:last-child").text().replace("$", ""));
+                }
+                else if ($("#selectedOpt").val() == "increase") {
+                    return parseInt($(a).find(".card-text i:last-child").text().replace("$", "")) - parseInt($(b).find(".card-text i:last-child").text().replace("$", ""));
+                }
+            }).appendTo("#listProducts");
+            showData(1);
         })
 
-        $("#searchInfo").click(function () {
 
-            $("#areaSearch #product .product").show();
-
-        })
     </script>
 </body>
 
