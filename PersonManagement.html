@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/lesson.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <title>Git Tutorial</title>
+    <style>
+        #tableInfo {
+            margin: 18px 10px 18px 10px;
+        }
+
+        label::after {
+            content: "*";
+            color: red;
+        }
+
+        #inputIntro {
+            height: 150px;
+        }
+
+        #lableIntro::after {
+            content: none;
+        }
+
+        #angree::after {
+            content: "*";
+            color: red;
+        }
+    </style>
+    `
+</head>
+
+<body>
+    <h1>Login GITHUB</h1>
+
+    <div class="bd-example">
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail">Name:</label>
+                    <input type="text" class="form-control" id="inputName" placeholder="Name" onkeyup="enableButt()"
+                        onchange="checkName()" required />
+                    <span class="error" id="erName" style="display: none; color: red">This Name is invalid</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Birthday:</label>
+                    <input type="date" class="form-control" id="inputBirthday" onkeyup="enableButt()" required />
+                    <span class="error" id="erBirthday" style="display: none; color: red">This Password is
+                        invalid</span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail">Email:</label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" onkeyup="enableButt()"
+                        onchange="checkEmail()" required />
+                    <span class="error" id="erEmail" style="display: none; color: red">This email is invalid</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Password:</label>
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Password"
+                        onkeyup="enableButt()" onchange="checkPass()" required />
+                    <span class="error" id="erPass" style="display: none; color: red">This Password is invalid</span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail">Phone:</label>
+                    <input type="text" class="form-control" id="inputPhone" placeholder="Phone" onkeyup="enableButt()"
+                        onchange="checkPhone()" required />
+                    <span class="error" id="erPhone" style="display: none; color: red">This Phone is invalid</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="Male" name="flexRadioDefault" id="MaleCheck"
+                            checked />
+                        <label class="form-check-label" for="MaleCheck"> Male </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="Female" name="flexRadioDefault"
+                            id="FemaleCheck" />
+                        <label class="form-check-label" for="FemalCheck"> Female </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Address:</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="Address" onkeyup="enableButt()"
+                    required />
+                <span class="error" id="erAddress" style="display: none; color: red">This Address is invalid</span>
+            </div>
+            <div class="form-group">
+                <label>Address 1:</label>
+                <input type="text" class="form-control" id="inputAddress1" placeholder="Address 1"
+                    onkeyup="enableButt()" required />
+                <span class="error" id="erAddress1" style="display: none; color: red">This Address 1 is invalid</span>
+            </div>
+            <div class="form-group">
+                <label id="lableIntro">Giới thiệu:</label>
+                <textarea type="text" class="form-control" id="inputIntro" onkeyup="enableButt()"
+                    onchange="checkEmail()"></textarea>
+                <span class="error" id="erIntro" style="display: none; color: red">This Intro 1 is invalid</span>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>City:</label>
+                    <select id="inputCity" class="form-control"></select>
+                    <span class="error" id="erCity" style="display: none; color: red">This City is invalid</span>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label>Zip:</label>
+                    <input type="number" class="form-control" id="inputZip" onkeyup="enableButt()" required />
+                    <span class="error" id="erZip" style="display: none; color: red">This Zip is invalid</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="inputCheckBox" required />
+                    <span class="spancheck" id="angree">Đồng ý điều khoản</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="inputCheckBox" />
+                    <span class="spancheck">Nhận mail tin tức</span>
+                </div>
+            </div>
+            <button type="button" id="signButt" class="btn-btn-primary" onclick="Insert()">
+                Sign in
+            </button>
+        </form>
+    </div>
+
+    <div id="tableInfo">
+        <table class="table table-bordered" id="tablePer">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Birthday</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Zip</th>
+                    <th>Intro</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="myBody"></tbody>
+        </table>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const person = [
+        {
+            name: "Cao Quoc Dong",
+            gender: "Male",
+            email: "caoquocdong1997@gmail.com",
+            phone: "0888795766",
+            pass: "dong123",
+            birthday: "08/23/1997",
+            address: "259 Binh Quoi Phuong 28 Quan Binh Thanh",
+            city: "Ho Chi Minh City",
+            zip: 700,
+            intro: "",
+        }
+    ];
+
+    asas();
+    display();
+
+    function asas() {
+        var info = (document.getElementById("signButt").disabled = true);
+    }
+
+    var states = new Array(
+        "An Giang",
+        "Bac Giang",
+        "Bac Kan",
+        "Bac Lieu",
+        "Bac Ninh",
+        "Ba Ria-Vung Tau",
+        "Ben Tre",
+        "Binh Dinh",
+        "Binh Duong",
+        "Binh Phuoc",
+        "Binh Thuan",
+        "Ca Mau",
+        "Cao Bang",
+        "Dac Lak",
+        "Dac Nong",
+        "Dien Bien",
+        "Dong Nai",
+        "Dong Thap",
+        "Gia Lai",
+        "Ha Giang",
+        "Hai Duong",
+        "Ha Nam",
+        "Ha Tay",
+        "Ha Tinh",
+        "Hau Giang",
+        "Hoa Binh",
+        "Hung Yen",
+        "Khanh Hoa",
+        "Kien Giang",
+        "Kon Tum",
+        "Lai Chau",
+        "Lam Dong",
+        "Lang Son",
+        "Lao Cai",
+        "Long An",
+        "Nam Dinh",
+        "Nghe An",
+        "Ninh Binh",
+        "Ninh Thuan",
+        "Phu Tho",
+        "Phu Yen",
+        "Quang Binh",
+        "Quang Nam",
+        "Quang Ngai",
+        "Quang Ninh",
+        "Quang Tri",
+        "Soc Trang",
+        "Son La",
+        "Tay Ninh",
+        "Thai Binh",
+        "Thai Nguyen",
+        "Thanh Hoa",
+        "Thua Thien-Hue",
+        "Tien Giang",
+        "Tra Vinh",
+        "Tuyen Quang",
+        "Vinh Long",
+        "Vinh Phuc",
+        "Yen Bai",
+        "Can Tho",
+        "Da Nang",
+        "Hai Phong",
+        "Hanoi",
+        "Ho Chi Minh"
+    );
+    displayCity();
+    function displayCity() {
+        var i;
+        for (i = 0; i < states.length; i++) {
+            let opt = document.createElement("option");
+            opt.value = states[i];
+            opt.innerText = states[i];
+            document.getElementById("inputCity").appendChild(opt);
+        }
+    }
+
+    function display() {
+        var i;
+        var html = "";
+        for (i = 0; i < person.length; i++) {
+            //let tRow = document.createElement("tr");
+            // tRow.id = person[i].name;
+
+            // let tID = document.createElement("td")
+            // tID.innerText = i;
+
+            // let td1 = document.createElement("td");
+            // td1.innerText = person[i].name;
+
+            // let td1v1 = document.createElement("td");
+            // td1v1.innerText = person[i].gender;
+
+            // let td2 = document.createElement("td");
+            // td2.innerText = person[i].phone;
+
+            // let td3 = document.createElement("td");
+            // td3.innerText = person[i].email;
+
+            // let td4 = document.createElement("td");
+            // td4.innerText = person[i].pass;
+
+            // let td5 = document.createElement("td");
+            // td5.innerText = person[i].birthday;
+
+            // let td6 = document.createElement("td");
+            // td6.innerText = person[i].address;
+
+            // let td7 = document.createElement("td");
+            // td7.innerText = person[i].city;
+
+            // let td8 = document.createElement("td");
+            // td8.innerText = person[i].zip;
+
+            // let td9 = document.createElement("td");
+            // td9.innerText = person[i].intro;
+
+            // let td10 = document.createElement("td");
+            // let btndelete = document.createElement("button");
+            // btndelete.innerText = "DELETE";
+            // btndelete.id = "deleteRow";
+            // btndelete.className = "btn btn-danger";
+            // btndelete.onclick = function () { deletefunc(tID.innerText) };
+
+            // tRow.appendChild(tID);
+            // tRow.appendChild(td1);
+            // tRow.appendChild(td1v1);
+            // tRow.appendChild(td2);
+            // tRow.appendChild(td3);
+            // tRow.appendChild(td4);
+            // tRow.appendChild(td5);
+            // tRow.appendChild(td6);
+            // tRow.appendChild(td7);
+            // tRow.appendChild(td8);
+            // tRow.appendChild(td9);
+            // tRow.appendChild(td10);
+            // td10.appendChild(btndelete);
+            html += `<tr>
+                <td>${i}</td>
+                <td>${person[i].name}</td>
+                <td>${person[i].gender}</td>
+                <td>${person[i].phone}</td>
+                <td>${person[i].email}</td>
+                <td>${person[i].pass}</td>
+                <td>${person[i].birthday}</td>
+                <td>${person[i].address}</td>
+                <td>${person[i].city}</td>
+                <td>${person[i].zip}</td>
+                <td>${person[i].intro}</td>
+                <td><button class="btn btn-danger" onclick="deletefunc(this)">DELETE</button></td>
+                </tr>`
+
+        }
+        document.getElementById("myBody").innerHTML = html;
+    }
+    let name = document.getElementById("inputName");
+    let email = document.getElementById("inputEmail");
+    let phone = document.getElementById("inputPhone");
+    let pass = document.getElementById("inputPassword");
+    let ad = document.getElementById("inputAddress");
+    let ad1 = document.getElementById("inputAddress1");
+    let city = document.getElementById("inputCity");
+    let zip = document.getElementById("inputZip");
+    let birthday = document.getElementById("inputBirthday");
+    let intro = document.getElementById("inputIntro");
+
+    function enableButt() {
+        if (
+            email.value != "" &&
+            pass.value != "" &&
+            ad.value != "" &&
+            ad1.value != "Select State" &&
+            city.value != "" &&
+            zip.value != "" &&
+            name.value != "" &&
+            phone.value != ""
+        ) {
+            document.getElementById("signButt").disabled = false;
+        } else {
+            document.getElementById("signButt").disabled = true;
+        }
+    }
+
+    function checkEmail() {
+        var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+        if (email.value.match(emailRegex)) {
+            document.getElementById("erEmail").style.display = "none";
+        } else {
+            document.getElementById("erEmail").style.display = "block";
+        }
+    }
+
+    function checkPass() {
+        var passRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+        if (pass.value.match(passRegex)) {
+            document.getElementById("erPass").style.display = "none";
+        } else {
+            document.getElementById("erPass").style.display = "block";
+        }
+    }
+
+    function checkName() {
+        var regexName = /^[a-z ,.'-]+$/i;
+        if (name.value.match(regexName)) {
+            document.getElementById("erName").style.display = "none";
+        } else {
+            document.getElementById("erName").style.display = "block";
+        }
+    }
+
+    function checkPhone() {
+        var rephone = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
+        if (phone.value.match(rephone)) {
+            document.getElementById("erPhone").style.display = "none";
+        } else {
+            document.getElementById("erPhone").style.display = "block";
+        }
+    }
+
+    let maleValue = document.getElementById("MaleCheck");
+    let femaleValue = document.getElementById("FemaleCheck");
+    function Insert() {
+        const per1 = [];
+        per1["name"] = name.value;
+        per1["email"] = email.value;
+        per1["phone"] = phone.value;
+        per1["pass"] = pass.value;
+        per1["birthday"] = birthday.value;
+        per1["address"] = ad.value;
+        per1["city"] = city.value;
+        per1["zip"] = zip.value;
+        per1["intro"] = intro.value;
+
+        if ((maleValue.checked = true)) {
+            per1["gender"] = "Male";
+        } else if ((femaleValue.checked = true)) {
+            per1["gender"] = "Female";
+        }
+        person.push(per1);
+        $("#myBody").empty();
+        display();
+    }
+
+    function deletefunc(num) {
+
+        var i = num.parentNode.parentNode.rowIndex;
+        document.getElementById("tablePer").deleteRow(i);
+
+    }
+</script>
+
+</html>
